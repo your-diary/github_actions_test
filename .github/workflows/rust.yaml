@@ -22,10 +22,11 @@ jobs:
               with:
                   command: build
                   args: --release
+            - run: "cp target/release/github_actions_test a.out"
             - uses: actions/upload-artifact@v3
               with:
-                  name: a.out
-                  path: target/release/github_actions_test
+                  name: binary
+                  path: a.out
 
     test:
         name: test
@@ -80,9 +81,7 @@ jobs:
         steps:
             - uses: actions/download-artifact@v3
               with:
-                  name: a.out
-            - run: ls
-            - run: file a.out | true
+                  name: binary
             - uses: softprops/action-gh-release@v1
               with:
                   draft: true
