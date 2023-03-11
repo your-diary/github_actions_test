@@ -81,6 +81,8 @@ jobs:
             - uses: actions/download-artifact@v3
               with:
                   name: a.out
+            - run: ls
+            - run: file a.out | true
             - uses: softprops/action-gh-release@v1
               with:
                   draft: true
