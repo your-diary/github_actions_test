@@ -4,14 +4,16 @@ on:
     push:
         branches: [master]
 
+permissions:
+    contents: write
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
     deploy:
-        if: ${{ github.ref_name == 'master' }}
+        if: ${{ github.ref_name == 'testing' }}
         runs-on: ubuntu-latest
-        permissions:
-            contents: write
-        concurrency:
-            group: ${{ github.workflow }}-${{ github.ref }}
         steps:
             - uses: actions/checkout@v3
 
@@ -20,7 +22,9 @@ jobs:
               with:
                   mdbook-version: "latest"
 
+            - run: ls
             - run: cd mdbook
+            - run: ls
             - run: mdbook build
 
             - name: deploy
