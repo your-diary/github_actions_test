@@ -1,0 +1,30 @@
+name: mdbook
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    deploy:
+        if: ${{ github.ref_name == 'master' }}
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: install mdbook
+              uses: peaceiris/actions-mdbook@v1
+              with:
+                  mdbook-version: "latest"
+
+            - run: cd mdbook
+            - run: mdbook build
+
+            - name: deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./book
