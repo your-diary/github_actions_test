@@ -10,7 +10,7 @@ CI/CD for Rust. It creates a draft release with a built binary.
 
 - [`./.github/workflows/pr_check.yaml`](./.github/workflows/pr_check.yaml)
 
-Only pull requests which pass this workflow can be merged to `master`.
+Only pull requests which pass this workflow can be merged into `master`.
 
 - [`./.github/workflows/mdbook.yaml`](./.github/workflows/mdbook.yaml)
 
