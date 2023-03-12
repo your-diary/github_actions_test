@@ -1,0 +1,18 @@
+name: act
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    is_act:
+        if: ${{ github.event.act }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "I'm act."
+
+    is_not_act:
+        if: ${{ !github.event.act }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "I'm not act."
