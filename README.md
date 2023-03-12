@@ -20,10 +20,10 @@ Builds `./mdbook` via `mdbook` and deploys it to GitHub Pages (https://your-diar
 
 Runs a different job depending on whether this workflow is run natively or run locally via [`act`](https://github.com/nektos/act):
 
-    ```bash
-    $ echo '{"act": true}' > ~/ramdisk/event.json
-    $ act -e ~/ramdisk/event.json -W .github/workflows/act.yaml
-    ```
+```bash
+$ echo '{"act": true}' > ~/ramdisk/event.json
+$ act -e ~/ramdisk/event.json -W .github/workflows/act.yaml
+```
 
 <!-- vim: set spell: -->
 
