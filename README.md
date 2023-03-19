@@ -25,5 +25,9 @@ $ echo '{"act": true}' > ~/ramdisk/event.json
 $ act -e ~/ramdisk/event.json -W .github/workflows/act.yaml
 ```
 
+- [`./.github/workflows/variable_and_secret.yaml`](./.github/workflows/variable_and_secret.yaml)
+
+Uses [*secrets*](https://docs.github.com/en/actions/security-guides/encrypted-secrets) and [*variables*](https://docs.github.com/en/actions/learn-github-actions/variables). It connects to an GCP instance via SSH with a SSH key and executes `uptime`.
+
 <!-- vim: set spell: -->
 
