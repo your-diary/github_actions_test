@@ -1,0 +1,34 @@
+#This workflow is disabled (via `branches: [non_existing]`) as deploying to GitHub Pages via `actions-gh-pages` is outdated.
+#See `mdbook.yaml` for the newer workflow.
+
+name: mdbook
+
+on:
+    push:
+        # branches: [master]
+        branches: [non_existing]
+
+permissions:
+    contents: write
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: install mdbook
+              uses: peaceiris/actions-mdbook@v1
+              with:
+                  mdbook-version: "latest"
+
+            - run: cd mdbook && mdbook build
+
+            - name: deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./mdbook/book
